@@ -1,20 +1,24 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Windows.Forms;
-using QuickImage.Forms;
+using QuickImage.Views;
+
+#endregion
 
 namespace QuickImage
 {
-    static class Program
-    {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
-        }
-    }
+	internal static class Program
+	{
+		/// <summary>
+		///     The main entry point for the application.
+		/// </summary>
+		[STAThread]
+		private static void Main()
+		{
+			Application.EnableVisualStyles();
+			Application.SetCompatibleTextRenderingDefault(false);
+			Application.Run(new MainView());
+		}
+	}
 }
