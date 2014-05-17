@@ -7,14 +7,25 @@ using QuickImage.Properties;
 
 namespace QuickImage.Model
 {
-	public static class Options
+	// TODO: Implement singleton-pattern, so we can have some default values and serialization to a file.
+	public class Options
 	{
 		public enum ImageType
 		{
 			PNG,
 			JPEG
 		}
+		private static Options instance;
 
+		public static Options Instance
+		{
+			get { return instance ?? new Options(); }
+		}
+
+		private Options()
+		{
+			instance = this;
+		}
 		public static ImageType Type { get; set; }
 		public static int Compression { get; set; }
 

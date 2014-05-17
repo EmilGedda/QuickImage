@@ -2,7 +2,7 @@
 
 namespace QuickImage.Views
 {
-	sealed partial class ActivationView
+	sealed partial class AuthorizationView
 	{
 		/// <summary>
 		/// Required designer variable.

@@ -45,7 +45,8 @@ namespace QuickImage.Model
 
 			string response;
 
-			if (!Network.Instance.TryPOSTRequest(Constants.TokenRefreshURL, uploadCollection, out response))
+			Network.Instance.TryPOSTRequest(Constants.TokenRefreshURL, uploadCollection, out response);
+			
 				MessageBox.Show("Unable to refresh your account tokens!");
 			Dictionary<string, object> data = JsonConvert.DeserializeObject<Dictionary<string, object>>(response);
 			expirationDate = DateTime.Now.AddSeconds(Convert.ToInt32(data["expires_in"]));

@@ -10,9 +10,9 @@ using QuickImage.Model;
 
 namespace QuickImage.Views
 {
-	public sealed partial class ActivationView : Form, IRequestHandler
+	public sealed partial class AuthorizationView : Form, IRequestHandler
 	{
-		public ActivationView()
+		public AuthorizationView()
 		{
 			PIN = "nope";
 			var settings = new Settings

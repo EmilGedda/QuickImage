@@ -9,7 +9,7 @@ using System.Text;
 
 namespace QuickImage.Model
 {
-	public class Network
+	public sealed class Network : IDisposable
 	{
 		private static Network _instance;
 
@@ -19,6 +19,11 @@ namespace QuickImage.Model
 		{
 			webClient.Headers.Add(HttpRequestHeader.Authorization, "Client-ID " + Constants.ClientID);
 			_instance = this;
+		}
+
+		~Network()
+		{
+			Dispose();
 		}
 
 		public static Network Instance
@@ -55,5 +60,12 @@ namespace QuickImage.Model
 			}
 			return success;
 		}
+
+		public void Dispose()
+		{
+			webClient.Dispose();
+			GC.SuppressFinalize(this);
+		}
+
 	}
 }

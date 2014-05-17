@@ -166,12 +166,6 @@ namespace QuickImage.Model
 			return printscreen != null && GUID.Equals(printscreen.GUID);
 		}
 
-		[DllImport("user32.dll")]
-		private static extern IntPtr GetForegroundWindow();
-
-		[DllImport("user32.dll")]
-		[return: MarshalAs(UnmanagedType.Bool)]
-		private static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
 
 		#region Static methods
 
@@ -187,14 +181,5 @@ namespace QuickImage.Model
 		}
 
 		#endregion
-
-		[StructLayout(LayoutKind.Sequential)]
-		private struct RECT
-		{
-			public readonly int Left; // x position of upper-left corner
-			public readonly int Top; // y position of upper-left corner
-			public readonly int Right; // x position of lower-right corner
-			public readonly int Bottom; // y position of lower-right corner
-		}
 	}
 }

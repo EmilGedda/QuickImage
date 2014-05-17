@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using QuickImage.Components;
 using QuickImage.Model;
 
 namespace QuickImage.Interface
@@ -20,7 +21,7 @@ namespace QuickImage.Interface
 		event KeyEventHandler ImageViewKeyDown;
 		event ListViewItemSelectionChangedEventHandler SelectedPrintscreenChanged;
 		event EventHandler<EventArgs> ToggleOverlay;
-		event EventHandler<EventArgs> DeleteButtonClicked;
+		event EventHandler<EventArgs> OverlayButtonClicked;
 		event EventHandler<EventArgs> OptionsButtonClicked;
 	}
 }

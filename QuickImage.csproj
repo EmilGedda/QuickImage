@@ -48,30 +48,35 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\NativeMethods.cs" />
+    <Compile Include="Classes\RoundedRectangle.cs" />
+    <Compile Include="Components\CustomListViewItem.cs" />
     <Compile Include="Interface\IDialogView.cs" />
     <Compile Include="Interface\IMainView.cs" />
     <Compile Include="Interface\IView.cs" />
-    <Compile Include="Model\Constants.cs" />
-    <Compile Include="Model\ImgurImage.cs" />
-    <Compile Include="Model\Network.cs" />
+    <Compile Include="Classes\Constants.cs" />
+    <Compile Include="Classes\ImgurImage.cs" />
+    <Compile Include="Classes\Network.cs" />
     <Compile Include="Model\PrintscreenCollection.cs" />
-    <Compile Include="Model\Tokens.cs" />
+    <Compile Include="Classes\Tokens.cs" />
     <Compile Include="Components\CustomListView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Model\Options.cs" />
-    <Compile Include="Model\Password.cs" />
+    <Compile Include="Classes\Options.cs" />
+    <Compile Include="Classes\Password.cs" />
     <Compile Include="Model\PrintscreenFactory.cs" />
-    <Compile Include="Model\User.cs" />
-    <Compile Include="Views\ActivationView.cs">
+    <Compile Include="Classes\User.cs" />
+    <Compile Include="Views\AuthorizationView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\ActivationView.Designer.cs">
-      <DependentUpon>ActivationView.cs</DependentUpon>
+    <Compile Include="Views\AuthorizationView.Designer.cs">
+      <DependentUpon>AuthorizationView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.cs">
       <SubType>Form</SubType>
@@ -89,8 +94,8 @@
     <Compile Include="Presenter\PrintscreenPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Views\ActivationView.resx">
-      <DependentUpon>ActivationView.cs</DependentUpon>
+    <EmbeddedResource Include="Views\AuthorizationView.resx">
+      <DependentUpon>AuthorizationView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>

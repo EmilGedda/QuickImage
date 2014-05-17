@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
+using QuickImage.Classes;
 
 #endregion
 
@@ -25,9 +26,9 @@ namespace QuickImage.Model
 
 		public static Printscreen CaptureWindow()
 		{
-			IntPtr activeWindow = GetForegroundWindow();
-			RECT size;
-			GetWindowRect(activeWindow, out size);
+			IntPtr activeWindow = NativeMethods.GetForegroundWindow();
+			NativeMethods.RECT size;
+			NativeMethods.GetWindowRect(activeWindow, out size);
 			Bitmap printscreen = new Bitmap(size.Right - size.Left, size.Bottom - size.Top);
 			Graphics graphics = Graphics.FromImage(printscreen);
 			graphics.CopyFromScreen(size.Left, size.Top, 0, 0, printscreen.Size);
@@ -52,6 +53,7 @@ namespace QuickImage.Model
 			printscreen.Size = BytesToString(new FileInfo(printscreen.filePath).Length);
 			printscreen.Thumb = img.GetThumbnailImage(200, 112, null, IntPtr.Zero);
 			printscreen.Process = process;
+			printscreen.Save();
 			return printscreen;
 		}
 

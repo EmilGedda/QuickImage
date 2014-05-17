@@ -2,8 +2,10 @@
 
 using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using QuickImage.Classes;
 
 #endregion
 
@@ -24,11 +26,12 @@ namespace QuickImage.Components
 		public CustomListView()
 		{
 			DoubleBuffered = true;
+
 		}
 
 		protected override void WndProc(ref Message m)
 		{
-			if (m.Msg == (int) WMDefault.NCCALCSIZE)
+			if (m.Msg == (int)WMDefault.NCCALCSIZE)
 			{
 				int style = GetWindowLong(Handle, GWL_STYLE);
 				if ((style & WS_HSCROLL) == WS_HSCROLL)
@@ -39,55 +42,61 @@ namespace QuickImage.Components
 
 		protected override void OnLostFocus(EventArgs e)
 		{
+/*
 			foreach (ListViewItem item in Items)
 				item.Selected = false;
+*/
+		}
+		private int MakeLong(short lowPart, short highPart)
+		{
+			return (int)(((ushort)lowPart) | (uint)(highPart << 16));
 		}
 
+		public void SetSpacing(IWin32Window listview, short leftPadding, short topPadding)
+		{
+			const int LVM_FIRST = 0x1000;
+			const int LVM_SETICONSPACING = LVM_FIRST + 53;
+			NativeMethods.SendMessage(listview.Handle, LVM_SETICONSPACING, IntPtr.Zero, (IntPtr)MakeLong(leftPadding, topPadding));
+		}
+		private readonly Pen pBlack = new Pen(Color.Black);
 		protected override void OnDrawItem(DrawListViewItemEventArgs e)
 		{
-			var item = e.Item;
+			var item = (CustomListViewItem)Items[e.ItemIndex];
 			if (item.ImageList == null) return;
-
 			var img = item.ImageList.Images[item.ImageIndex];
 			e.Graphics.DrawImage(img, item.Bounds.X, item.Bounds.Y);
-			if (e.Item.Selected)
-			{
-				Pen p = new Pen(Color.DodgerBlue) {Width = 3};
-				e.Graphics.DrawRectangle(p, item.Bounds.X, item.Bounds.Y, img.Width, img.Height);
-			}
-			else
-			{
-				Pen p = new Pen(Color.Black);
-				e.Graphics.DrawRectangle(p, item.Bounds.X, item.Bounds.Y, img.Width, img.Height);
-			}
+			e.Graphics.DrawRectangle(pBlack, item.Bounds.X, item.Bounds.Y, img.Width, img.Height);
+			if (item.Selected && item.SelectionOpacity < 255)
+				item.SelectionOpacity += 5;
+			if (!item.Selected && item.SelectionOpacity > 0)
+				item.SelectionOpacity -= 5;
+			Pen pBlue = new Pen(Color.FromArgb(item.SelectionOpacity, Color.DodgerBlue)) { Width = 3 };
+			GraphicsPath rounded = RoundedRectangle.Create(item.Bounds.X - 1, item.Bounds.Y - 1, img.Width + 2, img.Height + 1, 5);
+			e.Graphics.DrawPath(pBlue, rounded);
 			base.OnDrawItem(e);
+
+			if (item.SelectionOpacity > 0 && item.SelectionOpacity < 255)
+				Invalidate();
 		}
 
 		private static int GetWindowLong(IntPtr hWnd, int nIndex)
 		{
 			if (IntPtr.Size == 4)
-				return (int) GetWindowLong32(hWnd, nIndex);
-			return (int) (long) GetWindowLongPtr64(hWnd, nIndex);
+				return NativeMethods.GetWindowLong32(hWnd, nIndex);
+			return (int)NativeMethods.GetWindowLong32(hWnd, nIndex);
 		}
 
 		private static int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong)
 		{
 			if (IntPtr.Size == 4)
-				return (int) SetWindowLongPtr32(hWnd, nIndex, dwNewLong);
-			return (int) (long) SetWindowLongPtr64(hWnd, nIndex, dwNewLong);
+				return NativeMethods.SetWindowLongPtr32(hWnd, nIndex, dwNewLong);
+			return (int)NativeMethods.SetWindowLongPtr32(hWnd, nIndex, dwNewLong);
 		}
 
-
-		[DllImport("user32.dll", EntryPoint = "GetWindowLong", CharSet = CharSet.Auto)]
-		private static extern IntPtr GetWindowLong32(IntPtr hWnd, int nIndex);
-
-		[DllImport("user32.dll", EntryPoint = "GetWindowLongPtr", CharSet = CharSet.Auto)]
-		private static extern IntPtr GetWindowLongPtr64(IntPtr hWnd, int nIndex);
-
-		[DllImport("user32.dll", EntryPoint = "SetWindowLong", CharSet = CharSet.Auto)]
-		private static extern IntPtr SetWindowLongPtr32(IntPtr hWnd, int nIndex, int dwNewLong);
-
-		[DllImport("user32.dll", EntryPoint = "SetWindowLongPtr", CharSet = CharSet.Auto)]
-		private static extern IntPtr SetWindowLongPtr64(IntPtr hWnd, int nIndex, int dwNewLong);
+		private struct ItemFade
+		{
+			public bool Selected { get; set; }
+			public byte Alpha { get; set; }
+		}
 	}
 }

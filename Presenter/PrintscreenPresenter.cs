@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using QuickImage.Components;
 using QuickImage.Interface;
 using QuickImage.Model;
 using QuickImage.Views;
@@ -21,7 +23,8 @@ namespace QuickImage.Presenter
 		{
 			this.mainView = mainView;
 			this.mainView.ViewClosed += MainViewClosed;
-
+			this.mainView.SelectedPrintscreenChanged += OnSelectedPrintscreenChanged;
+			this.mainView.ImageViewKeyDown += OnImageViewKeyDown;
 			if (Settings.Default.FirstRun)
 			{
 				Settings.Default.SavePath = Application.UserAppDataPath;
@@ -29,11 +32,44 @@ namespace QuickImage.Presenter
 				Settings.Default.Save();
 
 			}
+			printscreens.Changed += PrintscreenCollectionChanged; //Assign after LoadPrintScreens to prevent unnecessary event-calling
 
 			LoadPrintScreens(Settings.Default.SavePath);
-
-			printscreens.Changed += PrintscreenCollectionChanged; //Assign after LoadPrintScreens to prevent unnecessary event-calling
 		}
+		private void OnImageViewKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode != Keys.Delete) return;
+			var listView = (CustomListView) sender;
+			foreach (ListViewItem selectedItem in listView.SelectedItems)
+			{
+				var printscreen = printscreens.FirstOrDefault(x => x.GUID.ToString() == selectedItem.Text);
+				if (printscreen == null) continue;
+				printscreen.Delete();
+				printscreens.Remove(printscreen);
+				listView.Items.Remove(selectedItem);
+			}
+			mainView.Link = string.Empty;
+			mainView.LinkButtonText = "Copy Link";
+		}
+
+		private void OnSelectedPrintscreenChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+		{
+			var item = e.Item;
+			if (!item.Selected)
+			{
+				mainView.Link = string.Empty;
+				mainView.LinkButtonText = "Copy Link";
+				mainView.Description = string.Empty;
+				return;
+			}
+
+			var printscreen = printscreens.FirstOrDefault(x => x.GUID.ToString() == item.Text);
+			if (printscreen == null) return;
+			mainView.Link = printscreen.Uploaded ? printscreen.ImgurImage.Link : "Not uploaded";
+			mainView.LinkButtonText = printscreen.Uploaded ? "Copy Link" : "Upload";
+			mainView.Description = printscreen.Description;
+		}
+
 		private void LoadPrintScreens(string path)
 		{
 			foreach (string file in Directory.GetFiles(path).Where(x => x.Contains(".qImg")))
@@ -48,7 +84,7 @@ namespace QuickImage.Presenter
 				}
 			}
 		}
-
+		
 		private void MainViewClosed(object sender, FormClosedEventArgs e)
 		{
 			foreach (Printscreen printscreen in printscreens)
@@ -61,7 +97,7 @@ namespace QuickImage.Presenter
 			mainView.ImageViewItems.Clear();
 			for (int i = 0; i < s.Count; i++)
 			{
-				ListViewItem item = new ListViewItem { ImageIndex = i, Text = printscreens[i].GUID.ToString() };
+				CustomListViewItem item = new CustomListViewItem { ImageIndex = i, Text = printscreens[i].GUID.ToString() };
 				mainView.ThumbList.Add(printscreens[i].Thumb);
 				mainView.ImageViewItems.Add(item);
 			}
