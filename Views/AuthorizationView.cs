@@ -1,74 +1,54 @@
 ﻿#region
 
+using System;
 using System.Net;
 using System.Windows.Forms;
 using CefSharp;
 using CefSharp.WinForms;
+using QuickImage.Interface;
 using QuickImage.Model;
 
 #endregion
 
 namespace QuickImage.Views
 {
-	public sealed partial class AuthorizationView : Form, IRequestHandler
+	public sealed partial class AuthorizationView : Form, IAuthorizationView
 	{
-		public AuthorizationView()
+
+		public AuthorizationView(IRequestHandler requestHandler)
 		{
-			PIN = "nope";
-			var settings = new Settings
-			{
-				PackLoadingDisabled = true
-			};
+			using (var settings = new Settings{ PackLoadingDisabled = true})
+				if (!CEF.Initialize(settings)) return;
 
 			InitializeComponent();
-			Text = "Application authentication";
 			BrowserSettings bs = new BrowserSettings
 			{
 				DeveloperToolsDisabled = true,
 				FullscreenEnabled = false,
 				LocalStorageDisabled = true
 			};
-			if (!CEF.Initialize(settings)) return;
-			webView = new WebView(Constants.AuthorizationURL, bs) {Dock = DockStyle.Fill};
+
+			webView = new WebView(Constants.AuthorizationURL, bs) { Dock = DockStyle.Fill };
 
 			toolStripContainer1.ContentPanel.Controls.Add(webView);
-			webView.RequestHandler = this;
+			webView.RequestHandler = requestHandler;
 		}
 
-		public string PIN { get; set; }
-
-		public bool GetAuthCredentials(IWebBrowser browser, bool isProxy, string host, int port, string realm, string scheme,
-			ref string username, ref string password)
+		public string Title
 		{
-			return false;
+			set { Text = value; }
 		}
 
-		public bool GetDownloadHandler(IWebBrowser browser, string mimeType, string fileName, long contentLength,
-			ref IDownloadHandler handler)
+		public event EventHandler<EventArgs> Initialize;
+		public event FormClosedEventHandler ViewClosed;
+		public void Invoke(MethodInvoker method)
 		{
-			return false;
+			base.Invoke(method);
 		}
 
-		public bool OnBeforeBrowse(IWebBrowser browser, IRequest request, NavigationType naigationvType, bool isRedirect)
+		public new void ShowDialog()
 		{
-			string url = request.Url;
-			string pin = "";
-			if (url.Contains("access_denied"))
-				Invoke((MethodInvoker) Close);
-			if (!url.Contains("pin=")) return false;
-			PIN = url.Split('=')[1];
-			Invoke((MethodInvoker) Close);
-			return false;
-		}
-
-		public bool OnBeforeResourceLoad(IWebBrowser browser, IRequestResponse requestResponse)
-		{
-			return false;
-		}
-
-		public void OnResourceResponse(IWebBrowser browser, string url, int status, string statusText, string mimeType,
-			WebHeaderCollection headers)
-		{
+			base.ShowDialog();
 		}
 	}
 }
