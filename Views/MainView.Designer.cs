@@ -33,6 +33,7 @@ namespace QuickImage.Views
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainView));
 			this.imageBox = new System.Windows.Forms.GroupBox();
+			this.imageView = new QuickImage.Components.CustomListView();
 			this.thumbList = new System.Windows.Forms.ImageList(this.components);
 			this.optionsBox = new System.Windows.Forms.GroupBox();
 			this.deleteButton = new System.Windows.Forms.CheckBox();
@@ -45,7 +46,6 @@ namespace QuickImage.Views
 			this.linkLabel = new System.Windows.Forms.Label();
 			this.statusLabel = new System.Windows.Forms.Label();
 			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.imageView = new QuickImage.Components.CustomListView();
 			this.imageBox.SuspendLayout();
 			this.optionsBox.SuspendLayout();
 			this.SuspendLayout();
@@ -62,6 +62,22 @@ namespace QuickImage.Views
 			this.imageBox.TabIndex = 0;
 			this.imageBox.TabStop = false;
 			this.imageBox.Text = "Images";
+			// 
+			// imageView
+			// 
+			this.imageView.Activation = System.Windows.Forms.ItemActivation.OneClick;
+			this.imageView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.imageView.LargeImageList = this.thumbList;
+			this.imageView.Location = new System.Drawing.Point(3, 16);
+			this.imageView.Margin = new System.Windows.Forms.Padding(0);
+			this.imageView.Name = "imageView";
+			this.imageView.OwnerDraw = true;
+			this.imageView.Size = new System.Drawing.Size(225, 195);
+			this.imageView.SmallImageList = this.thumbList;
+			this.imageView.TabIndex = 0;
+			this.imageView.UseCompatibleStateImageBehavior = false;
+			this.imageView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.imageView_ItemSelectionChanged);
+			this.imageView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.imageView_KeyDown);
 			// 
 			// thumbList
 			// 
@@ -148,7 +164,7 @@ namespace QuickImage.Views
 			this.optionsButton.Name = "optionsButton";
 			this.optionsButton.Size = new System.Drawing.Size(65, 23);
 			this.optionsButton.TabIndex = 4;
-			this.optionsButton.Text = "Options";
+			this.optionsButton.Text = "Settings";
 			this.optionsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.optionsButton.UseVisualStyleBackColor = true;
 			this.optionsButton.Click += new System.EventHandler(this.optionsButton_Click);
@@ -180,22 +196,6 @@ namespace QuickImage.Views
 			this.statusLabel.Size = new System.Drawing.Size(60, 13);
 			this.statusLabel.TabIndex = 2;
 			this.statusLabel.Text = "Status: Idle";
-			// 
-			// imageView
-			// 
-			this.imageView.Activation = System.Windows.Forms.ItemActivation.OneClick;
-			this.imageView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.imageView.LargeImageList = this.thumbList;
-			this.imageView.Location = new System.Drawing.Point(3, 16);
-			this.imageView.Margin = new System.Windows.Forms.Padding(0);
-			this.imageView.Name = "imageView";
-			this.imageView.OwnerDraw = true;
-			this.imageView.Size = new System.Drawing.Size(225, 195);
-			this.imageView.SmallImageList = this.thumbList;
-			this.imageView.TabIndex = 0;
-			this.imageView.UseCompatibleStateImageBehavior = false;
-			this.imageView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.imageView_ItemSelectionChanged);
-			this.imageView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.imageView_KeyDown);
 			// 
 			// MainView
 			// 

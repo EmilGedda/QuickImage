@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
+﻿using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Windows.Forms;
 using QuickImage.Components;
 using QuickImage.Interface;
 using QuickImage.Model;
-using QuickImage.Views;
 using QuickImage.Properties;
 
 namespace QuickImage.Presenter
@@ -33,7 +30,8 @@ namespace QuickImage.Presenter
 
 			}
 			printscreens.Changed += PrintscreenCollectionChanged; //Assign after LoadPrintScreens to prevent unnecessary event-calling
-
+			using(WebClient wc = new WebClient())
+				//wc.DownloadDataAsync(new Uri());
 			LoadPrintScreens(Settings.Default.SavePath);
 		}
 		private void OnImageViewKeyDown(object sender, KeyEventArgs e)

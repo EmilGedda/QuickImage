@@ -1,7 +1,6 @@
 ﻿#region
 
 using System;
-using System.Net;
 using System.Windows.Forms;
 using CefSharp;
 using CefSharp.WinForms;

@@ -3,7 +3,6 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using QuickImage.Classes;
 
@@ -15,8 +14,6 @@ namespace QuickImage.Components
 	{
 		private enum WMDefault
 		{
-			DRAWITEM = 0x002B,
-			REFLECT = 0x2000,
 			NCCALCSIZE = 0x83
 		}
 
@@ -26,7 +23,6 @@ namespace QuickImage.Components
 		public CustomListView()
 		{
 			DoubleBuffered = true;
-
 		}
 
 		protected override void WndProc(ref Message m)
@@ -40,14 +36,7 @@ namespace QuickImage.Components
 			base.WndProc(ref m);
 		}
 
-		protected override void OnLostFocus(EventArgs e)
-		{
-/*
-			foreach (ListViewItem item in Items)
-				item.Selected = false;
-*/
-		}
-		private int MakeLong(short lowPart, short highPart)
+		private static int MakeLong(short lowPart, short highPart)
 		{
 			return (int)(((ushort)lowPart) | (uint)(highPart << 16));
 		}
@@ -58,21 +47,29 @@ namespace QuickImage.Components
 			const int LVM_SETICONSPACING = LVM_FIRST + 53;
 			NativeMethods.SendMessage(listview.Handle, LVM_SETICONSPACING, IntPtr.Zero, (IntPtr)MakeLong(leftPadding, topPadding));
 		}
+
 		private readonly Pen pBlack = new Pen(Color.Black);
+
 		protected override void OnDrawItem(DrawListViewItemEventArgs e)
 		{
 			var item = (CustomListViewItem)Items[e.ItemIndex];
+
 			if (item.ImageList == null) return;
+
 			var img = item.ImageList.Images[item.ImageIndex];
+
 			e.Graphics.DrawImage(img, item.Bounds.X, item.Bounds.Y);
 			e.Graphics.DrawRectangle(pBlack, item.Bounds.X, item.Bounds.Y, img.Width, img.Height);
+
 			if (item.Selected && item.SelectionOpacity < 255)
 				item.SelectionOpacity += 5;
 			if (!item.Selected && item.SelectionOpacity > 0)
 				item.SelectionOpacity -= 5;
+
 			Pen pBlue = new Pen(Color.FromArgb(item.SelectionOpacity, Color.DodgerBlue)) { Width = 3 };
 			GraphicsPath rounded = RoundedRectangle.Create(item.Bounds.X - 1, item.Bounds.Y - 1, img.Width + 2, img.Height + 1, 5);
 			e.Graphics.DrawPath(pBlue, rounded);
+
 			base.OnDrawItem(e);
 
 			if (item.SelectionOpacity > 0 && item.SelectionOpacity < 255)
@@ -81,22 +78,12 @@ namespace QuickImage.Components
 
 		private static int GetWindowLong(IntPtr hWnd, int nIndex)
 		{
-			if (IntPtr.Size == 4)
-				return NativeMethods.GetWindowLong32(hWnd, nIndex);
-			return (int)NativeMethods.GetWindowLong32(hWnd, nIndex);
+			return NativeMethods.GetWindowLong32(hWnd, nIndex);
 		}
 
-		private static int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong)
+		private static void SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong)
 		{
-			if (IntPtr.Size == 4)
-				return NativeMethods.SetWindowLongPtr32(hWnd, nIndex, dwNewLong);
-			return (int)NativeMethods.SetWindowLongPtr32(hWnd, nIndex, dwNewLong);
-		}
-
-		private struct ItemFade
-		{
-			public bool Selected { get; set; }
-			public byte Alpha { get; set; }
+			NativeMethods.SetWindowLongPtr32(hWnd, nIndex, dwNewLong);
 		}
 	}
 }

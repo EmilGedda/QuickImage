@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using QuickImage.Components;
-using QuickImage.Model;
 
 namespace QuickImage.Interface
 {

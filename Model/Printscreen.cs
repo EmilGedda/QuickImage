@@ -3,7 +3,6 @@
 using System;
 using System.Drawing;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
@@ -19,7 +18,7 @@ namespace QuickImage.Model
 
 		private DateTime date;
 		private Guid guid;
-		private ImgurImage imgurImage;
+		private Imgur imgurImage;
 		private string name;
 		private string process;
 		private string resolution;
@@ -27,7 +26,6 @@ namespace QuickImage.Model
 		private Image thumb;
 
 		#endregion
-
 		#region Properties
 
 		public string Name
@@ -72,7 +70,7 @@ namespace QuickImage.Model
 			private set { thumb = value; }
 		}
 
-		public ImgurImage ImgurImage
+		public Imgur ImgurImage
 		{
 			get { return imgurImage; }
 			private set { imgurImage = value; }
@@ -108,7 +106,7 @@ namespace QuickImage.Model
 
 		public void Upload()
 		{
-			ImgurImage = ImgurImage.Upload(filePath);
+			ImgurImage = Imgur.Upload(filePath);
 			MessageBox.Show(ImgurImage.Link);
 		}
 

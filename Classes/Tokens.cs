@@ -43,9 +43,7 @@ namespace QuickImage.Model
 				{"grant_type", "refresh_token"}
 			};
 
-			string response;
-
-			Network.Instance.TryPOSTRequest(Constants.TokenRefreshURL, uploadCollection, out response);
+			string response = Network.Instance.POSTRequest(Constants.TokenRefreshURL, uploadCollection);
 			
 				MessageBox.Show("Unable to refresh your account tokens!");
 			Dictionary<string, object> data = JsonConvert.DeserializeObject<Dictionary<string, object>>(response);

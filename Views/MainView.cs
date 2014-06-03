@@ -2,7 +2,6 @@
 
 using System;
 using System.Windows.Forms;
-using QuickImage.Components;
 using QuickImage.Interface;
 using QuickImage.Presenter;
 
@@ -12,14 +11,14 @@ namespace QuickImage.Views
 {
 	public sealed partial class MainView : Form, IMainView
 	{
-		private PrintscreenPresenter presenter;
-
 		public MainView()
 		{
 			InitializeComponent();
-			presenter = new PrintscreenPresenter(this);
-			Text = string.Format("{0} - v{1}", ProductName, ProductVersion); //YOLO
 			imageView.SetSpacing(imageView, 210, 120);
+
+			Text = string.Format("{0} - v{1}", ProductName, ProductVersion); //YOLO
+	
+			new PrintscreenPresenter(this);
 		}
 
 		#region Properties
@@ -70,7 +69,6 @@ namespace QuickImage.Views
 
 		private void optionsButton_Click(object sender, EventArgs e)
 		{
-			MessageBox.Show(imageView.SelectedItems.Count.ToString());
 			if (OptionsButtonClicked != null)
 				OptionsButtonClicked(sender, e);
 		}

@@ -48,20 +48,23 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Hotkey.cs" />
     <Compile Include="Classes\NativeMethods.cs" />
     <Compile Include="Classes\RoundedRectangle.cs" />
+    <Compile Include="Classes\Statistics.cs" />
+    <Compile Include="Components\OverlayPreviewPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Components\CustomListViewItem.cs" />
     <Compile Include="Interface\IAuthorizationView.cs" />
     <Compile Include="Interface\IMainView.cs" />
     <Compile Include="Interface\IView.cs" />
     <Compile Include="Classes\Constants.cs" />
-    <Compile Include="Classes\ImgurImage.cs" />
+    <Compile Include="Model\Imgur.cs" />
     <Compile Include="Classes\Network.cs" />
     <Compile Include="Model\PrintscreenCollection.cs" />
     <Compile Include="Classes\Tokens.cs" />
@@ -138,6 +141,7 @@
     </Content>
     <Content Include="Resources\cog.png" />
     <Content Include="Resources\icon.ico" />
+    <Content Include="Resources\wrench.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

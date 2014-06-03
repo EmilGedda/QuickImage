@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QuickImage.Model
 {
@@ -36,7 +32,7 @@ namespace QuickImage.Model
 
 		IEnumerator IEnumerable.GetEnumerator()
 		{
-			return ((IEnumerable)printscreens).GetEnumerator();
+			return printscreens.GetEnumerator();
 		}
 
 		public void Add(Printscreen p)

@@ -11,14 +11,13 @@ namespace QuickImage.Model
 {
 	public sealed class Network : IDisposable
 	{
-		private static Network _instance;
+		private static readonly Network instance = new Network();
 
 		private readonly WebClient webClient = new WebClient();
 
 		private Network()
 		{
 			webClient.Headers.Add(HttpRequestHeader.Authorization, "Client-ID " + Constants.ClientID);
-			_instance = this;
 		}
 
 		~Network()
@@ -28,37 +27,17 @@ namespace QuickImage.Model
 
 		public static Network Instance
 		{
-			get { return _instance ?? new Network(); }
+			get { return instance; }
 		}
 
-		public bool TryGETRequest(string url, out string response)
+		public string GETRequest(string url)
 		{
-			response = "";
-			bool success = true;
-			try
-			{
-				response = webClient.DownloadString(url);
-			}
-			catch (Exception e)
-			{
-				success = false;
-			}
-			return success;
+			return webClient.DownloadString(url);
 		}
 
-		public bool TryPOSTRequest(string url, NameValueCollection data, out string response)
+		public string POSTRequest(string url, NameValueCollection data)
 		{
-			response = "";
-			bool success = true;
-			try
-			{
-				response = Encoding.UTF8.GetString(webClient.UploadValues(url, data));
-			}
-			catch (Exception e)
-			{
-				success = false;
-			}
-			return success;
+			return Encoding.UTF8.GetString(webClient.UploadValues(url, data));
 		}
 
 		public void Dispose()

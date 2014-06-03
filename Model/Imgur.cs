@@ -12,14 +12,14 @@ using Newtonsoft.Json.Linq;
 namespace QuickImage.Model
 {
 	[Serializable]
-	public class ImgurImage
+	public class Imgur
 	{
 		private string deleteHash;
 		private string id;
 		private string link;
 		private int views;
 
-		private ImgurImage()
+		private Imgur()
 		{
 		}
 
@@ -51,20 +51,16 @@ namespace QuickImage.Model
 			private set { views = value; }
 		}
 
-		public static ImgurImage Upload(string path)
+		public static Imgur Upload(string path)
 		{
-			NameValueCollection uploadCollection = new NameValueCollection
+			var uploadCollection = new NameValueCollection
 			{
 				{"image", Convert.ToBase64String(File.ReadAllBytes(path))}
 			};
-			string response;
-			if (!Network.Instance.TryPOSTRequest(Constants.UploadImageURL, uploadCollection, out response))
-			{
-				MessageBox.Show("Unable to upload image!");
-				return null;
-			}
+			string response = Network.Instance.POSTRequest(Constants.UploadImageURL, uploadCollection);
+
 			JObject first = JObject.Parse(response);
-			return JsonConvert.DeserializeObject<ImgurImage>(first["data"].ToString());
+			return JsonConvert.DeserializeObject<Imgur>(first["data"].ToString());
 		}
 	}
 }
