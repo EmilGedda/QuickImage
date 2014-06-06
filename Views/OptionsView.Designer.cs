@@ -35,6 +35,7 @@ namespace QuickImage.Views
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionsView));
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.generalTab = new System.Windows.Forms.TabPage();
+			this.label23 = new System.Windows.Forms.Label();
 			this.groupBox10 = new System.Windows.Forms.GroupBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
@@ -71,6 +72,23 @@ namespace QuickImage.Views
 			this.radioButton3 = new System.Windows.Forms.RadioButton();
 			this.radioButton1 = new System.Windows.Forms.RadioButton();
 			this.accountTab = new System.Windows.Forms.TabPage();
+			this.groupBox14 = new System.Windows.Forms.GroupBox();
+			this.label22 = new System.Windows.Forms.Label();
+			this.label21 = new System.Windows.Forms.Label();
+			this.radioButton10 = new System.Windows.Forms.RadioButton();
+			this.radioButton2 = new System.Windows.Forms.RadioButton();
+			this.checkBox21 = new System.Windows.Forms.CheckBox();
+			this.label20 = new System.Windows.Forms.Label();
+			this.groupBox13 = new System.Windows.Forms.GroupBox();
+			this.label19 = new System.Windows.Forms.Label();
+			this.button5 = new System.Windows.Forms.Button();
+			this.label18 = new System.Windows.Forms.Label();
+			this.label17 = new System.Windows.Forms.Label();
+			this.groupBox12 = new System.Windows.Forms.GroupBox();
+			this.button4 = new System.Windows.Forms.Button();
+			this.label16 = new System.Windows.Forms.Label();
+			this.label15 = new System.Windows.Forms.Label();
+			this.button3 = new System.Windows.Forms.Button();
 			this.hotkeyTab = new System.Windows.Forms.TabPage();
 			this.label8 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
@@ -94,6 +112,7 @@ namespace QuickImage.Views
 			this.checkBox3 = new System.Windows.Forms.CheckBox();
 			this.overlayTab = new System.Windows.Forms.TabPage();
 			this.groupBox11 = new System.Windows.Forms.GroupBox();
+			this.checkBox19 = new System.Windows.Forms.CheckBox();
 			this.label14 = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
 			this.trackBar1 = new System.Windows.Forms.TrackBar();
@@ -109,7 +128,9 @@ namespace QuickImage.Views
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.optionsToolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.overlayColorDialog = new System.Windows.Forms.ColorDialog();
-			this.checkBox19 = new System.Windows.Forms.CheckBox();
+			this.label24 = new System.Windows.Forms.Label();
+			this.label25 = new System.Windows.Forms.Label();
+			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.overlayPreviewPanel = new QuickImage.Components.OverlayPreviewPanel();
 			this.tabControl1.SuspendLayout();
 			this.generalTab.SuspendLayout();
@@ -121,6 +142,10 @@ namespace QuickImage.Views
 			this.groupBox8.SuspendLayout();
 			this.groupBox6.SuspendLayout();
 			this.groupBox7.SuspendLayout();
+			this.accountTab.SuspendLayout();
+			this.groupBox14.SuspendLayout();
+			this.groupBox13.SuspendLayout();
+			this.groupBox12.SuspendLayout();
 			this.hotkeyTab.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -155,6 +180,10 @@ namespace QuickImage.Views
 			// 
 			// generalTab
 			// 
+			this.generalTab.Controls.Add(this.linkLabel1);
+			this.generalTab.Controls.Add(this.label25);
+			this.generalTab.Controls.Add(this.label24);
+			this.generalTab.Controls.Add(this.label23);
 			this.generalTab.Controls.Add(this.groupBox10);
 			this.generalTab.Controls.Add(this.groupBox9);
 			this.generalTab.Controls.Add(this.groupBox5);
@@ -168,13 +197,23 @@ namespace QuickImage.Views
 			this.generalTab.Text = "General";
 			this.generalTab.UseVisualStyleBackColor = true;
 			// 
+			// label23
+			// 
+			this.label23.AutoSize = true;
+			this.label23.Font = new System.Drawing.Font("Segoe UI", 8.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label23.Location = new System.Drawing.Point(284, 95);
+			this.label23.Name = "label23";
+			this.label23.Size = new System.Drawing.Size(70, 30);
+			this.label23.TabIndex = 2;
+			this.label23.Text = "Not really\r\nthat fancy...\r\n";
+			// 
 			// groupBox10
 			// 
 			this.groupBox10.Controls.Add(this.label2);
 			this.groupBox10.Controls.Add(this.textBox1);
-			this.groupBox10.Location = new System.Drawing.Point(155, 7);
+			this.groupBox10.Location = new System.Drawing.Point(138, 7);
 			this.groupBox10.Name = "groupBox10";
-			this.groupBox10.Size = new System.Drawing.Size(200, 72);
+			this.groupBox10.Size = new System.Drawing.Size(223, 72);
 			this.groupBox10.TabIndex = 6;
 			this.groupBox10.TabStop = false;
 			this.groupBox10.Text = "Data Folder";
@@ -183,7 +222,7 @@ namespace QuickImage.Views
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(6, 52);
+			this.label2.Location = new System.Drawing.Point(16, 49);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(186, 13);
 			this.label2.TabIndex = 1;
@@ -193,7 +232,7 @@ namespace QuickImage.Views
 			// 
 			this.textBox1.Location = new System.Drawing.Point(7, 22);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(187, 22);
+			this.textBox1.Size = new System.Drawing.Size(210, 22);
 			this.textBox1.TabIndex = 0;
 			this.optionsToolTip.SetToolTip(this.textBox1, "Click to change");
 			// 
@@ -201,9 +240,9 @@ namespace QuickImage.Views
 			// 
 			this.groupBox9.Controls.Add(this.radioButton6);
 			this.groupBox9.Controls.Add(this.radioButton5);
-			this.groupBox9.Location = new System.Drawing.Point(155, 85);
+			this.groupBox9.Location = new System.Drawing.Point(138, 85);
 			this.groupBox9.Name = "groupBox9";
-			this.groupBox9.Size = new System.Drawing.Size(142, 46);
+			this.groupBox9.Size = new System.Drawing.Size(137, 46);
 			this.groupBox9.TabIndex = 5;
 			this.groupBox9.TabStop = false;
 			this.groupBox9.Text = "Fancy Animations";
@@ -236,7 +275,7 @@ namespace QuickImage.Views
 			this.groupBox5.Controls.Add(this.checkBox1);
 			this.groupBox5.Location = new System.Drawing.Point(6, 6);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(142, 73);
+			this.groupBox5.Size = new System.Drawing.Size(126, 73);
 			this.groupBox5.TabIndex = 4;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "Startup";
@@ -271,7 +310,7 @@ namespace QuickImage.Views
 			this.groupBox4.Controls.Add(this.checkBox12);
 			this.groupBox4.Location = new System.Drawing.Point(6, 85);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(142, 46);
+			this.groupBox4.Size = new System.Drawing.Size(126, 46);
 			this.groupBox4.TabIndex = 3;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Startup Notification";
@@ -289,7 +328,7 @@ namespace QuickImage.Views
 			// checkBox12
 			// 
 			this.checkBox12.AutoSize = true;
-			this.checkBox12.Location = new System.Drawing.Point(72, 21);
+			this.checkBox12.Location = new System.Drawing.Point(67, 21);
 			this.checkBox12.Name = "checkBox12";
 			this.checkBox12.Size = new System.Drawing.Size(57, 17);
 			this.checkBox12.TabIndex = 2;
@@ -644,9 +683,9 @@ namespace QuickImage.Views
 			this.radioButton3.Enabled = false;
 			this.radioButton3.Location = new System.Drawing.Point(6, 77);
 			this.radioButton3.Name = "radioButton3";
-			this.radioButton3.Size = new System.Drawing.Size(121, 17);
+			this.radioButton3.Size = new System.Drawing.Size(147, 17);
 			this.radioButton3.TabIndex = 2;
-			this.radioButton3.Text = "Upload to account";
+			this.radioButton3.Text = "Upload to your account";
 			this.radioButton3.UseVisualStyleBackColor = true;
 			// 
 			// radioButton1
@@ -663,12 +702,204 @@ namespace QuickImage.Views
 			// 
 			// accountTab
 			// 
+			this.accountTab.Controls.Add(this.groupBox14);
+			this.accountTab.Controls.Add(this.label20);
+			this.accountTab.Controls.Add(this.groupBox13);
+			this.accountTab.Controls.Add(this.groupBox12);
 			this.accountTab.Location = new System.Drawing.Point(4, 22);
 			this.accountTab.Name = "accountTab";
 			this.accountTab.Size = new System.Drawing.Size(364, 211);
 			this.accountTab.TabIndex = 3;
 			this.accountTab.Text = "Account";
 			this.accountTab.UseVisualStyleBackColor = true;
+			// 
+			// groupBox14
+			// 
+			this.groupBox14.Controls.Add(this.label22);
+			this.groupBox14.Controls.Add(this.label21);
+			this.groupBox14.Controls.Add(this.radioButton10);
+			this.groupBox14.Controls.Add(this.radioButton2);
+			this.groupBox14.Controls.Add(this.checkBox21);
+			this.groupBox14.Enabled = false;
+			this.groupBox14.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.groupBox14.Location = new System.Drawing.Point(194, 4);
+			this.groupBox14.Name = "groupBox14";
+			this.groupBox14.Size = new System.Drawing.Size(167, 177);
+			this.groupBox14.TabIndex = 11;
+			this.groupBox14.TabStop = false;
+			this.groupBox14.Text = "Imgur Settings";
+			// 
+			// label22
+			// 
+			this.label22.AutoSize = true;
+			this.label22.Font = new System.Drawing.Font("Segoe UI", 8.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label22.Location = new System.Drawing.Point(5, 37);
+			this.label22.Name = "label22";
+			this.label22.Size = new System.Drawing.Size(143, 30);
+			this.label22.TabIndex = 13;
+			this.label22.Text = "Prevents imgur from\r\ncompressing large images";
+			// 
+			// label21
+			// 
+			this.label21.AutoSize = true;
+			this.label21.Font = new System.Drawing.Font("Segoe UI", 8.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label21.Location = new System.Drawing.Point(4, 110);
+			this.label21.Name = "label21";
+			this.label21.Size = new System.Drawing.Size(164, 60);
+			this.label21.TabIndex = 12;
+			this.label21.Text = "Private uploads must be put\r\ninto a public album for others \r\nto see them or even" +
+    " know\r\nthat they exist.";
+			// 
+			// radioButton10
+			// 
+			this.radioButton10.AutoSize = true;
+			this.radioButton10.Location = new System.Drawing.Point(6, 73);
+			this.radioButton10.Name = "radioButton10";
+			this.radioButton10.Size = new System.Drawing.Size(102, 17);
+			this.radioButton10.TabIndex = 2;
+			this.radioButton10.TabStop = true;
+			this.radioButton10.Text = "Public Uploads";
+			this.radioButton10.UseVisualStyleBackColor = true;
+			// 
+			// radioButton2
+			// 
+			this.radioButton2.AutoSize = true;
+			this.radioButton2.Location = new System.Drawing.Point(6, 90);
+			this.radioButton2.Name = "radioButton2";
+			this.radioButton2.Size = new System.Drawing.Size(105, 17);
+			this.radioButton2.TabIndex = 1;
+			this.radioButton2.TabStop = true;
+			this.radioButton2.Text = "Private Uploads";
+			this.radioButton2.UseVisualStyleBackColor = true;
+			// 
+			// checkBox21
+			// 
+			this.checkBox21.AutoSize = true;
+			this.checkBox21.Location = new System.Drawing.Point(6, 19);
+			this.checkBox21.Name = "checkBox21";
+			this.checkBox21.Size = new System.Drawing.Size(137, 17);
+			this.checkBox21.TabIndex = 0;
+			this.checkBox21.Text = "High Quality Uploads";
+			this.checkBox21.UseVisualStyleBackColor = true;
+			// 
+			// label20
+			// 
+			this.label20.AutoSize = true;
+			this.label20.Font = new System.Drawing.Font("Segoe UI", 8.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label20.Location = new System.Drawing.Point(5, 187);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(343, 15);
+			this.label20.TabIndex = 10;
+			this.label20.Text = "Don\'t refresh tokens unless you run into problem with uploading";
+			// 
+			// groupBox13
+			// 
+			this.groupBox13.Controls.Add(this.label19);
+			this.groupBox13.Controls.Add(this.button5);
+			this.groupBox13.Controls.Add(this.label18);
+			this.groupBox13.Controls.Add(this.label17);
+			this.groupBox13.Enabled = false;
+			this.groupBox13.Location = new System.Drawing.Point(4, 78);
+			this.groupBox13.Name = "groupBox13";
+			this.groupBox13.Size = new System.Drawing.Size(184, 103);
+			this.groupBox13.TabIndex = 9;
+			this.groupBox13.TabStop = false;
+			this.groupBox13.Text = "Tokens";
+			// 
+			// label19
+			// 
+			this.label19.AutoSize = true;
+			this.label19.Font = new System.Drawing.Font("Segoe UI", 7.55F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label19.Location = new System.Drawing.Point(19, 35);
+			this.label19.Name = "label19";
+			this.label19.Size = new System.Drawing.Size(66, 13);
+			this.label19.TabIndex = 12;
+			this.label19.Text = "Valid until: ";
+			// 
+			// button5
+			// 
+			this.button5.Enabled = false;
+			this.button5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button5.Location = new System.Drawing.Point(47, 75);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(97, 22);
+			this.button5.TabIndex = 11;
+			this.button5.Text = "Refresh tokens";
+			this.button5.UseVisualStyleBackColor = true;
+			// 
+			// label18
+			// 
+			this.label18.AutoSize = true;
+			this.label18.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label18.Location = new System.Drawing.Point(6, 56);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(82, 13);
+			this.label18.TabIndex = 11;
+			this.label18.Text = "Refresh token:";
+			// 
+			// label17
+			// 
+			this.label17.AutoSize = true;
+			this.label17.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label17.Location = new System.Drawing.Point(6, 17);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(79, 13);
+			this.label17.TabIndex = 10;
+			this.label17.Text = "Access token: ";
+			// 
+			// groupBox12
+			// 
+			this.groupBox12.Controls.Add(this.button4);
+			this.groupBox12.Controls.Add(this.label16);
+			this.groupBox12.Controls.Add(this.label15);
+			this.groupBox12.Controls.Add(this.button3);
+			this.groupBox12.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.groupBox12.Location = new System.Drawing.Point(4, 4);
+			this.groupBox12.Name = "groupBox12";
+			this.groupBox12.Size = new System.Drawing.Size(184, 68);
+			this.groupBox12.TabIndex = 8;
+			this.groupBox12.TabStop = false;
+			this.groupBox12.Text = "Settings";
+			// 
+			// button4
+			// 
+			this.button4.Enabled = false;
+			this.button4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button4.Location = new System.Drawing.Point(106, 36);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(72, 22);
+			this.button4.TabIndex = 10;
+			this.button4.Text = "Profile";
+			this.button4.UseVisualStyleBackColor = true;
+			// 
+			// label16
+			// 
+			this.label16.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label16.Location = new System.Drawing.Point(109, 20);
+			this.label16.Name = "label16";
+			this.label16.Size = new System.Drawing.Size(69, 13);
+			this.label16.TabIndex = 9;
+			this.label16.Text = "None";
+			this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// label15
+			// 
+			this.label15.AutoSize = true;
+			this.label15.Location = new System.Drawing.Point(6, 20);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(97, 13);
+			this.label15.TabIndex = 8;
+			this.label15.Text = "Current Account: ";
+			// 
+			// button3
+			// 
+			this.button3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button3.Location = new System.Drawing.Point(8, 36);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(72, 22);
+			this.button3.TabIndex = 7;
+			this.button3.Text = "Log in";
+			this.button3.UseVisualStyleBackColor = true;
 			// 
 			// hotkeyTab
 			// 
@@ -1091,6 +1322,18 @@ namespace QuickImage.Views
 			this.groupBox11.TabStop = false;
 			this.groupBox11.Text = "Settings";
 			// 
+			// checkBox19
+			// 
+			this.checkBox19.AutoSize = true;
+			this.checkBox19.Checked = true;
+			this.checkBox19.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox19.Location = new System.Drawing.Point(9, 48);
+			this.checkBox19.Name = "checkBox19";
+			this.checkBox19.Size = new System.Drawing.Size(115, 17);
+			this.checkBox19.TabIndex = 12;
+			this.checkBox19.Text = "Rounded corners";
+			this.checkBox19.UseVisualStyleBackColor = true;
+			// 
 			// label14
 			// 
 			this.label14.AutoSize = true;
@@ -1237,17 +1480,38 @@ namespace QuickImage.Views
 			this.overlayColorDialog.Color = System.Drawing.Color.Red;
 			this.overlayColorDialog.FullOpen = true;
 			// 
-			// checkBox19
+			// label24
 			// 
-			this.checkBox19.AutoSize = true;
-			this.checkBox19.Checked = true;
-			this.checkBox19.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox19.Location = new System.Drawing.Point(9, 48);
-			this.checkBox19.Name = "checkBox19";
-			this.checkBox19.Size = new System.Drawing.Size(115, 17);
-			this.checkBox19.TabIndex = 12;
-			this.checkBox19.Text = "Rounded corners";
-			this.checkBox19.UseVisualStyleBackColor = true;
+			this.label24.AutoSize = true;
+			this.label24.Font = new System.Drawing.Font("Segoe UI", 7.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label24.ForeColor = System.Drawing.Color.Gray;
+			this.label24.Location = new System.Drawing.Point(3, 193);
+			this.label24.Name = "label24";
+			this.label24.Size = new System.Drawing.Size(146, 13);
+			this.label24.TabIndex = 7;
+			this.label24.Text = "Ⓒ Emil Gedda || 2014 ->  ∞\r\n";
+			// 
+			// label25
+			// 
+			this.label25.AutoSize = true;
+			this.label25.Font = new System.Drawing.Font("Segoe UI", 7.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label25.ForeColor = System.Drawing.Color.Gray;
+			this.label25.Location = new System.Drawing.Point(228, 193);
+			this.label25.Name = "label25";
+			this.label25.Size = new System.Drawing.Size(108, 13);
+			this.label25.TabIndex = 8;
+			this.label25.Text = "Source code found:";
+			// 
+			// linkLabel1
+			// 
+			this.linkLabel1.AutoSize = true;
+			this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+			this.linkLabel1.Location = new System.Drawing.Point(332, 193);
+			this.linkLabel1.Name = "linkLabel1";
+			this.linkLabel1.Size = new System.Drawing.Size(30, 13);
+			this.linkLabel1.TabIndex = 9;
+			this.linkLabel1.TabStop = true;
+			this.linkLabel1.Text = "here";
 			// 
 			// overlayPreviewPanel
 			// 
@@ -1275,8 +1539,10 @@ namespace QuickImage.Views
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "OptionsForm";
 			this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+			this.Load += new System.EventHandler(this.OptionsView_Load);
 			this.tabControl1.ResumeLayout(false);
 			this.generalTab.ResumeLayout(false);
+			this.generalTab.PerformLayout();
 			this.groupBox10.ResumeLayout(false);
 			this.groupBox10.PerformLayout();
 			this.groupBox9.ResumeLayout(false);
@@ -1293,6 +1559,14 @@ namespace QuickImage.Views
 			this.groupBox6.PerformLayout();
 			this.groupBox7.ResumeLayout(false);
 			this.groupBox7.PerformLayout();
+			this.accountTab.ResumeLayout(false);
+			this.accountTab.PerformLayout();
+			this.groupBox14.ResumeLayout(false);
+			this.groupBox14.PerformLayout();
+			this.groupBox13.ResumeLayout(false);
+			this.groupBox13.PerformLayout();
+			this.groupBox12.ResumeLayout(false);
+			this.groupBox12.PerformLayout();
 			this.hotkeyTab.ResumeLayout(false);
 			this.hotkeyTab.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
@@ -1395,5 +1669,26 @@ namespace QuickImage.Views
 		private Label label12;
 		private PictureBox colorDisplay;
 		private CheckBox checkBox19;
+		private GroupBox groupBox13;
+		private Label label18;
+		private Label label17;
+		private GroupBox groupBox12;
+		private Button button4;
+		private Label label16;
+		private Label label15;
+		private Button button3;
+		private Label label23;
+		private GroupBox groupBox14;
+		private Label label22;
+		private Label label21;
+		private RadioButton radioButton10;
+		private RadioButton radioButton2;
+		private CheckBox checkBox21;
+		private Label label20;
+		private Label label19;
+		private Button button5;
+		private LinkLabel linkLabel1;
+		private Label label25;
+		private Label label24;
 	}
 }

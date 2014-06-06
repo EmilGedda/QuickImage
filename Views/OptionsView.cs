@@ -16,6 +16,8 @@ namespace QuickImage.Views
 		public OptionsView()
 		{
 			InitializeComponent();
+			linkLabel1.Links.Add(new LinkLabel.Link());
+			linkLabel1.Links[0].LinkData = "http://github.se/EmilGedda/QuickImage";
 		}
 
 		private void comboBox1_KeyDown(object sender, KeyEventArgs e)
@@ -24,6 +26,11 @@ namespace QuickImage.Views
 			string key = Hotkey.ValidKeys.FirstOrDefault(x => x.Value == e.KeyData).Key;
 			if (key != null)
 				comboBox1.Text = key;
+		}
+
+		private void OptionsView_Load(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

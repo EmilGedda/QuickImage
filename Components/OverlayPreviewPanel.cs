@@ -23,7 +23,7 @@ namespace QuickImage.Components
 		protected override void OnPaintBackground(PaintEventArgs e)
 		{
 			e.Graphics.Clear(Color.White);
-			const int margin = 10;
+			const int margin = 15;
 			GraphicsPath overlay = RoundedRectangle.Create(margin, margin, Width - 2*margin, Height - 2*margin);
 			e.Graphics.DrawPath(new Pen(Color.Red) { Width = Thickness }, overlay);
 		}
